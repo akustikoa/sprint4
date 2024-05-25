@@ -1,0 +1,33 @@
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+html {
+  font-size: 15px !important;
+  font-family: sans-serif !important;
+}
+body {
+  background: white !important;
+}
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 100%;
+}
+.container {
+  width: 90% !important;
+  max-width: 500px !important;
+  margin: 0 auto !important;
+}
+button {
+  padding: 1rem !important;
+  margin-top: 1rem !important;
+  width: fit-content;
+  align-items: justify !important;
+  cursor: pointer;
+  align-self: flex-end !important;
+}

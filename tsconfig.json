@@ -5,7 +5,7 @@
     "strict": true,
     "esModuleInterop": true,
     "outDir": "./dist",
-    "lib": ["es5", "dom"]
+    "lib": ["es5", "dom", "ES2015"]
   },
   "include": ["./src/**/*"]
 }

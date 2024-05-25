@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>app</title>
     <!-- bootstrap -->
     <link
@@ -16,10 +16,12 @@
   <body>
     <section>
       <div class="container">
-        <div class="joke"></div>
-        <button>Següent acudit</button>
+        <div class="joke">
+          <p id="jokeText"></p>
+        </div>
+        <button id="nextJoke">Next Joke</button>
       </div>
     </section>
-    <script src="./dist/app.js"></script>
+    <script src="dist/index.js"></script>
   </body>
 </html>
