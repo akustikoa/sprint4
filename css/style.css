@@ -8,13 +8,12 @@ html {
   font-family: sans-serif !important;
 }
 body {
-  background: white !important;
-  background-image: url("img/fons.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
+  background-image: url("../img/fons.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  height: 100vh !important;
+  margin: 0 !important;
 }
 section {
   display: flex;
@@ -27,7 +26,7 @@ section {
 .container {
   width: 90% !important;
   max-width: 700px !important;
-  min-height: 320px !important;
+  min-height: 420px !important;
   margin: 0 auto !important;
   display: flex;
   flex-direction: column;
