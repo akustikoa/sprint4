@@ -9,6 +9,12 @@ html {
 }
 body {
   background: white !important;
+  background-image: url("img/fons.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
 }
 section {
   display: flex;
@@ -20,14 +26,10 @@ section {
 }
 .container {
   width: 90% !important;
-  max-width: 500px !important;
+  max-width: 700px !important;
+  min-height: 320px !important;
   margin: 0 auto !important;
-}
-button {
-  padding: 1rem !important;
-  margin-top: 1rem !important;
-  width: fit-content;
-  align-items: justify !important;
-  cursor: pointer;
-  align-self: flex-end !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
