@@ -1,4 +1,5 @@
 "use strict";
+// const world = "world";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,15 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var world = "world";
-function hello(who) {
-    if (who === void 0) { who = world; }
-    return "Hello ".concat(who, "! ");
-}
-var nextJoke = document.getElementById("nextJoke");
-var jokeText = document.getElementById("jokeText");
+// function hello(who: string = world): string {
+//   return `Hello ${who}! `;
+// }
+var nextJoke = document.getElementById("nextJoke"); //importem boto
+var jokeText = document.getElementById("jokeText"); //importem text acudit
+var boto1 = document.getElementById("boto1");
+var boto2 = document.getElementById("boto2");
+var boto3 = document.getElementById("boto3");
 document.addEventListener("DOMContentLoaded", getJoke);
-nextJoke.addEventListener("click", getJoke);
+// MOSTRAR ACUDITS
+nextJoke.addEventListener("click", getJoke); //inicialitzem la funció al clicar
 function getJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -73,6 +76,24 @@ function getJoke() {
             }
         });
     });
+}
+//Assignem valor a botons
+boto1 === null || boto1 === void 0 ? void 0 : boto1.addEventListener("click", function () { return vote(1); });
+boto2 === null || boto2 === void 0 ? void 0 : boto2.addEventListener("click", function () { return vote(2); });
+boto3 === null || boto3 === void 0 ? void 0 : boto3.addEventListener("click", function () { return vote(3); });
+function vote(score) {
+    var jokeText = document.getElementById("jokeText");
+    // let boto = document.getElementById("boto" + score); //concatenem el nom més la puntuació
+    var jokeScore = score;
+    if (jokeText) {
+        var jokeHtml = jokeText.innerHTML;
+        var jokeReport = {
+            joke: jokeHtml,
+            score: jokeScore,
+            date: new Date().toISOString(),
+        };
+        console.log(jokeReport);
+    }
 }
 // function getJoke() {
 //   fetch("https://icanhazdadjoke.com/", {
