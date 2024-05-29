@@ -1,5 +1,4 @@
 "use strict";
-// const world = "world";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,15 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// function hello(who: string = world): string {
-//   return `Hello ${who}! `;
-// }
 var nextJoke = document.getElementById("nextJoke"); //importem boto
 var jokeText = document.getElementById("jokeText"); //importem text acudit
+var norrisJokeText = document.getElementById("norrisJokeText"); //importem text acudit
 var boto1 = document.getElementById("boto1");
 var boto2 = document.getElementById("boto2");
 var boto3 = document.getElementById("boto3");
+var iconHtml = document.getElementById("iconhtml");
+var temperature2 = document.getElementById("temperature2");
 document.addEventListener("DOMContentLoaded", getJoke);
+document.addEventListener("DOMContentLoaded", getNorrisJoke);
+// variables
+var reportJokes = [];
 // MOSTRAR ACUDITS
 nextJoke.addEventListener("click", getJoke); //inicialitzem la funció al clicar
 function getJoke() {
@@ -57,13 +59,14 @@ function getJoke() {
                     return [4 /*yield*/, fetch("https://icanhazdadjoke.com/", {
                             headers: {
                                 Accept: "application/json",
-                            },
+                            }, // amb el get fem un fetch per aconseguir la data i ara l'hem de fer llegible
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
+                    console.log(data);
                     if (jokeText) {
                         jokeText.innerHTML = data.joke;
                     }
@@ -77,39 +80,86 @@ function getJoke() {
         });
     });
 }
+// Function norris joke
+nextJoke.addEventListener("click", getNorrisJoke);
+function getNorrisJoke() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random", {
+                            headers: {
+                                "x-rapidapi-key": "f4403c7ad0msh04c93825d4e43ecp138fe3jsndca77ab58afc",
+                                "x-rapidapi-host": "matchilling-chuck-norris-jokes-v1.p.rapidapi.com",
+                                Accept: "application/json",
+                            },
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    if (norrisJokeText) {
+                        norrisJokeText.innerHTML = data.value;
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error("Error getting the norrisJoke", error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+//Function getWeather
+function getWeather() {
+    return __awaiter(this, void 0, void 0, function () {
+        var apiKey, city, response, data, iconCode, iconUrl, tempCode;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    apiKey = "3dd738c2fa4e8c524c12451eebab3cfb";
+                    city = "Barcelona";
+                    return [4 /*yield*/, fetch("https://api.openweathermap.org/data/2.5/weather?q=".concat(city, "&appid=").concat(apiKey, "&units=metric"), {
+                            headers: {
+                                Accept: "application/json",
+                            },
+                        })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    iconCode = data.weather[0].icon;
+                    iconUrl = "https://openweathermap.org/img/wn/".concat(iconCode, "@2x.png");
+                    iconHtml.innerHTML = "<img src=\"".concat(iconUrl, "\">");
+                    tempCode = data.main.temp;
+                    temperature2.innerHTML = tempCode;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+getWeather();
 //Assignem valor a botons
-boto1 === null || boto1 === void 0 ? void 0 : boto1.addEventListener("click", function () { return vote(1); });
+boto1 === null || boto1 === void 0 ? void 0 : boto1.addEventListener("click", function () { return vote(1); }); //Cridem la funcio vote amb l'argumen (valor 1,2 0 3)
 boto2 === null || boto2 === void 0 ? void 0 : boto2.addEventListener("click", function () { return vote(2); });
 boto3 === null || boto3 === void 0 ? void 0 : boto3.addEventListener("click", function () { return vote(3); });
 function vote(score) {
-    var jokeText = document.getElementById("jokeText");
-    // let boto = document.getElementById("boto" + score); //concatenem el nom més la puntuació
+    // let jokeText = document.getElementById("jokeText");
     var jokeScore = score;
     if (jokeText) {
         var jokeHtml = jokeText.innerHTML;
-        var jokeReport = {
+        var jokeAcudits = {
             joke: jokeHtml,
             score: jokeScore,
             date: new Date().toISOString(),
         };
-        console.log(jokeReport);
+        reportJokes.push(jokeAcudits);
+        console.log(reportJokes);
     }
 }
-// function getJoke() {
-//   fetch("https://icanhazdadjoke.com/", {
-//     headers: {
-//       Accept: "application/json",
-//     },
-//   })
-//     .then((data) => data.json())
-//     .then((obj) => (jokeText.innerHTML = obj.joke));
-// }
-// async function getJoke(): Promise<void> {
-//   const jokeData = await fetch("https://icanhazdadjoke.com/", {
-//     headers: {
-//       Accept: "application/json",
-//     },
-//   });
-//   const jokeObj = await jokeData.json();
-//   jokeText.innerHTML = jokeObj.joke;
-// }
