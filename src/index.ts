@@ -1,15 +1,14 @@
 const nextJoke = document.getElementById("nextJoke") as HTMLButtonElement; //importem boto
 const jokeText = document.getElementById("jokeText") as HTMLParagraphElement; //importem text acudit
-const norrisJokeText = document.getElementById(
-  "norrisJokeText"
-) as HTMLParagraphElement; //importem text acudit
+
 const boto1 = document.getElementById("boto1") as HTMLCanvasElement;
 const boto2 = document.getElementById("boto2") as HTMLCanvasElement;
 const boto3 = document.getElementById("boto3") as HTMLCanvasElement;
 const iconHtml = document.getElementById("iconhtml") as HTMLDivElement;
 const temperature2 = document.getElementById("temperature2") as HTMLDivElement;
-document.addEventListener("DOMContentLoaded", getJoke);
-document.addEventListener("DOMContentLoaded", getNorrisJoke);
+document.addEventListener("DOMContentLoaded", () => {
+  aleatoriJoke();
+});
 
 // variables
 const reportJokes: typeJokes[] = [];
@@ -20,12 +19,11 @@ type typeJokes = {
   date: string;
 };
 
+// Funció aleatoris
+
 // MOSTRAR ACUDITS
 
-nextJoke.addEventListener("click", getJoke); //inicialitzem la funció al clicar
-
 async function getJoke(): Promise<void> {
-  //inicialitzem funció asincrona
   try {
     const response = await fetch("https://icanhazdadjoke.com/", {
       headers: {
@@ -44,7 +42,7 @@ async function getJoke(): Promise<void> {
 }
 
 // Function norris joke
-nextJoke.addEventListener("click", getNorrisJoke);
+// nextJoke.addEventListener("click", getNorrisJoke);
 
 async function getNorrisJoke(): Promise<void> {
   try {
@@ -62,8 +60,8 @@ async function getNorrisJoke(): Promise<void> {
 
     const data = await response.json();
     console.log(data);
-    if (norrisJokeText) {
-      norrisJokeText.innerHTML = data.value;
+    if (jokeText) {
+      jokeText.innerHTML = data.value;
     }
   } catch (error) {
     console.error("Error getting the norrisJoke", error);
@@ -116,3 +114,11 @@ function vote(score: number) {
     console.log(reportJokes);
   }
 }
+
+function aleatoriJoke() {
+  const funcioAleatoriJoke = Math.random() < 0.5 ? getJoke : getNorrisJoke;
+  funcioAleatoriJoke();
+}
+nextJoke.addEventListener("click", () => {
+  aleatoriJoke(); // Assegura't que `aleatoriJoke` es cridi correctament al fer clic
+});

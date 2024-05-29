@@ -37,18 +37,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var nextJoke = document.getElementById("nextJoke"); //importem boto
 var jokeText = document.getElementById("jokeText"); //importem text acudit
-var norrisJokeText = document.getElementById("norrisJokeText"); //importem text acudit
 var boto1 = document.getElementById("boto1");
 var boto2 = document.getElementById("boto2");
 var boto3 = document.getElementById("boto3");
 var iconHtml = document.getElementById("iconhtml");
 var temperature2 = document.getElementById("temperature2");
-document.addEventListener("DOMContentLoaded", getJoke);
-document.addEventListener("DOMContentLoaded", getNorrisJoke);
+document.addEventListener("DOMContentLoaded", function () {
+    aleatoriJoke();
+});
 // variables
 var reportJokes = [];
+// Funció aleatoris
 // MOSTRAR ACUDITS
-nextJoke.addEventListener("click", getJoke); //inicialitzem la funció al clicar
 function getJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -81,7 +81,7 @@ function getJoke() {
     });
 }
 // Function norris joke
-nextJoke.addEventListener("click", getNorrisJoke);
+// nextJoke.addEventListener("click", getNorrisJoke);
 function getNorrisJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_2;
@@ -102,8 +102,8 @@ function getNorrisJoke() {
                 case 2:
                     data = _a.sent();
                     console.log(data);
-                    if (norrisJokeText) {
-                        norrisJokeText.innerHTML = data.value;
+                    if (jokeText) {
+                        jokeText.innerHTML = data.value;
                     }
                     return [3 /*break*/, 4];
                 case 3:
@@ -163,3 +163,10 @@ function vote(score) {
         console.log(reportJokes);
     }
 }
+function aleatoriJoke() {
+    var funcioAleatoriJoke = Math.random() < 0.5 ? getJoke : getNorrisJoke;
+    funcioAleatoriJoke();
+}
+nextJoke.addEventListener("click", function () {
+    aleatoriJoke(); // Assegura't que `aleatoriJoke` es cridi correctament al fer clic
+});
