@@ -1,22 +1,23 @@
 const nextJoke = document.getElementById("nextJoke") as HTMLButtonElement; //importem boto
 const jokeText = document.getElementById("jokeText") as HTMLParagraphElement; //importem text acudit
-const boto1 = document.getElementById("boto1") as HTMLCanvasElement;
-const boto2 = document.getElementById("boto2") as HTMLCanvasElement;
-const boto3 = document.getElementById("boto3") as HTMLCanvasElement;
+const boto1 = document.getElementById("boto1") as HTMLButtonElement;
+const boto2 = document.getElementById("boto2") as HTMLButtonElement;
+const boto3 = document.getElementById("boto3") as HTMLButtonElement;
 const iconHtml = document.getElementById("iconhtml") as HTMLDivElement;
 const temperature2 = document.getElementById("temperature2") as HTMLDivElement;
-const backgroundImg = document.getElementById(
+const backgroundImage = document.getElementById(
   "backgroundImg"
 ) as HTMLDivElement;
 const form = [
-  "img/image1.png",
-  "img/image2.png",
-  "img/image3.png",
-  "img/image4.png",
-  "img/image5.png",
+  "image1.png",
+  "image2.png",
+  "image3.png",
+  "image4.png",
+  "image5.png",
 ];
 document.addEventListener("DOMContentLoaded", () => {
   aleatoriJoke();
+  changeBackground();
 });
 
 // variables
@@ -124,10 +125,11 @@ function vote(score: number) {
     console.log(reportJokes);
   }
 }
+
 function changeBackground() {
   const randomIndex = Math.floor(Math.random() * form.length);
   const selectedForm = form[randomIndex];
-  backgroundImg.style.backgroundImage = `url('img/${selectedForm}')`;
+  backgroundImage.style.backgroundImage = `url('img/${selectedForm}')`;
 }
 
 function aleatoriJoke() {
