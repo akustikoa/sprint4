@@ -1,16 +1,26 @@
 const nextJoke = document.getElementById("nextJoke") as HTMLButtonElement; //importem boto
 const jokeText = document.getElementById("jokeText") as HTMLParagraphElement; //importem text acudit
-
 const boto1 = document.getElementById("boto1") as HTMLCanvasElement;
 const boto2 = document.getElementById("boto2") as HTMLCanvasElement;
 const boto3 = document.getElementById("boto3") as HTMLCanvasElement;
 const iconHtml = document.getElementById("iconhtml") as HTMLDivElement;
 const temperature2 = document.getElementById("temperature2") as HTMLDivElement;
+const backgroundImg = document.getElementById(
+  "backgroundImg"
+) as HTMLDivElement;
+const form = [
+  "img/image1.png",
+  "img/image2.png",
+  "img/image3.png",
+  "img/image4.png",
+  "img/image5.png",
+];
 document.addEventListener("DOMContentLoaded", () => {
   aleatoriJoke();
 });
 
 // variables
+
 const reportJokes: typeJokes[] = [];
 
 type typeJokes = {
@@ -114,11 +124,17 @@ function vote(score: number) {
     console.log(reportJokes);
   }
 }
+function changeBackground() {
+  const randomIndex = Math.floor(Math.random() * form.length);
+  const selectedForm = form[randomIndex];
+  backgroundImg.style.backgroundImage = `url('img/${selectedForm}')`;
+}
 
 function aleatoriJoke() {
   const funcioAleatoriJoke = Math.random() < 0.5 ? getJoke : getNorrisJoke;
   funcioAleatoriJoke();
 }
 nextJoke.addEventListener("click", () => {
-  aleatoriJoke(); // Assegura't que `aleatoriJoke` es cridi correctament al fer clic
+  changeBackground();
+  aleatoriJoke();
 });

@@ -14,6 +14,7 @@
     />
   </head>
   <body>
+    <div id="backgroundImg"></div>
     <section style="position: relative">
       <div
         class="d-flex top-0 start-0 align-items-center"
@@ -21,29 +22,29 @@
       >
         <div class="weather top-0 start-0" id="iconhtml"></div>
         <div
-          class="weather top-0 start-0 fw-bold fs-5 text-white"
+          class="weather top-0 start-0 fw-bold fs-5 text-black"
           id="temperature2"
         ></div>
       </div>
-      <div class="container shadow-lg rounded-3 bg-white p-5">
+      <div class="container rounded-3 p-5">
         <div class="joke p-4 text-center">
-          <p class="fw-semibold fs-4 text-center mb-5" id="frase">
+          <p class="fw-semibold fs-4 text-center text-white mb-5" id="frase">
             Preparat per riure?🤣
           </p>
-          <p id="jokeText" class="mb-5"></p>
+          <p id="jokeText" class="mb-5 text-white"></p>
         </div>
         <div
           id="voting container"
           class="d-flex justify-content-center mb-5 m-t5"
         >
-          <button id="boto1" class="btn fs-3">😢</button>
-          <button id="boto2" class="btn fs-3">😑</button>
-          <button id="boto3" class="btn fs-3">😝</button>
+          <button id="boto1" class="btn fs-2">😢</button>
+          <button id="boto2" class="btn fs-2">😑</button>
+          <button id="boto3" class="btn fs-2">😝</button>
         </div>
         <div class="d-flex justify-content-center mb-5">
           <button
             id="nextJoke"
-            class="btn rounded-3 p-3 border-0 btn-info text-white"
+            class="btn btn-warning rounded-3 p-3 border-0 btn-info rounded-5 border-white"
           >
             Següent acudit
           </button>

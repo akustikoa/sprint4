@@ -42,6 +42,14 @@ var boto2 = document.getElementById("boto2");
 var boto3 = document.getElementById("boto3");
 var iconHtml = document.getElementById("iconhtml");
 var temperature2 = document.getElementById("temperature2");
+var backgroundImg = document.getElementById("backgroundImg");
+var form = [
+    "img/image1.png",
+    "img/image2.png",
+    "img/image3.png",
+    "img/image4.png",
+    "img/image5.png",
+];
 document.addEventListener("DOMContentLoaded", function () {
     aleatoriJoke();
 });
@@ -163,10 +171,16 @@ function vote(score) {
         console.log(reportJokes);
     }
 }
+function changeBackground() {
+    var randomIndex = Math.floor(Math.random() * form.length);
+    var selectedForm = form[randomIndex];
+    backgroundImg.style.backgroundImage = "url('img/".concat(selectedForm, "')");
+}
 function aleatoriJoke() {
     var funcioAleatoriJoke = Math.random() < 0.5 ? getJoke : getNorrisJoke;
     funcioAleatoriJoke();
 }
 nextJoke.addEventListener("click", function () {
-    aleatoriJoke(); // Assegura't que `aleatoriJoke` es cridi correctament al fer clic
+    changeBackground();
+    aleatoriJoke();
 });

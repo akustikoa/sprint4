@@ -4,18 +4,22 @@
   box-sizing: border-box !important;
 }
 html {
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-family: sans-serif !important;
 }
-body {
-  background-image: url("../img/fons.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
+#backgroundImg {
+  background-size: contain !important;
   background-repeat: no-repeat !important;
-  height: 100vh !important;
-  margin: 0 !important;
+  background-position: center !important;
 }
 section {
+  /* background-image: url("../img/image1.png") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important; */
+
+  height: 100vh !important;
+  margin: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,8 +30,8 @@ section {
 
 .container {
   width: 90% !important;
-  max-width: 700px !important;
-  min-height: 420px !important;
+  max-width: 500px !important;
+  min-height: 320px !important;
   margin: 0 auto !important;
   display: flex;
   flex-direction: column;
