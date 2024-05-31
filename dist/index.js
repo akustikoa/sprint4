@@ -35,8 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var nextJoke = document.getElementById("nextJoke"); //importem boto
-var jokeText = document.getElementById("jokeText"); //importem text acudit
+var nextJoke = document.getElementById("nextJoke");
+var jokeText = document.getElementById("jokeText");
 var boto1 = document.getElementById("boto1");
 var boto2 = document.getElementById("boto2");
 var boto3 = document.getElementById("boto3");
@@ -50,14 +50,13 @@ var form = [
     "image4.png",
     "image5.png",
 ];
+var reportJokes = [];
+//Crida funcions al carregar pàgina
 document.addEventListener("DOMContentLoaded", function () {
     aleatoriJoke();
     changeBackground();
 });
-// variables
-var reportJokes = [];
-// Funció aleatoris
-// MOSTRAR ACUDITS
+// Funció per mostrar acudits
 function getJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -68,14 +67,13 @@ function getJoke() {
                     return [4 /*yield*/, fetch("https://icanhazdadjoke.com/", {
                             headers: {
                                 Accept: "application/json",
-                            }, // amb el get fem un fetch per aconseguir la data i ara l'hem de fer llegible
+                            },
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    console.log(data);
                     if (jokeText) {
                         jokeText.innerHTML = data.joke;
                     }
@@ -89,8 +87,7 @@ function getJoke() {
         });
     });
 }
-// Function norris joke
-// nextJoke.addEventListener("click", getNorrisJoke);
+// Funció per mostrar acudits Chuck Norris
 function getNorrisJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_2;
@@ -110,14 +107,13 @@ function getNorrisJoke() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    console.log(data);
                     if (jokeText) {
                         jokeText.innerHTML = data.value;
                     }
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
-                    console.error("Error getting the norrisJoke", error_2);
+                    console.error("Error getting norrisJoke", error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -158,8 +154,8 @@ getWeather();
 boto1 === null || boto1 === void 0 ? void 0 : boto1.addEventListener("click", function () { return vote(1); }); //Cridem la funcio vote amb l'argumen (valor 1,2 0 3)
 boto2 === null || boto2 === void 0 ? void 0 : boto2.addEventListener("click", function () { return vote(2); });
 boto3 === null || boto3 === void 0 ? void 0 : boto3.addEventListener("click", function () { return vote(3); });
+//Funció valorar acudits
 function vote(score) {
-    // let jokeText = document.getElementById("jokeText");
     var jokeScore = score;
     if (jokeText) {
         var jokeHtml = jokeText.innerHTML;
@@ -172,14 +168,15 @@ function vote(score) {
         console.log(reportJokes);
     }
 }
+//Funció canvi de forma aleatoriament
 function changeBackground() {
     var randomIndex = Math.floor(Math.random() * form.length);
     var selectedForm = form[randomIndex];
     backgroundImage.style.backgroundImage = "url('img/".concat(selectedForm, "')");
 }
 function aleatoriJoke() {
-    var funcioAleatoriJoke = Math.random() < 0.5 ? getJoke : getNorrisJoke;
-    funcioAleatoriJoke();
+    var aleatori = Math.random() < 0.5 ? getJoke : getNorrisJoke;
+    aleatori();
 }
 nextJoke.addEventListener("click", function () {
     changeBackground();

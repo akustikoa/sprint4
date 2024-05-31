@@ -1,5 +1,5 @@
-const nextJoke = document.getElementById("nextJoke") as HTMLButtonElement; //importem boto
-const jokeText = document.getElementById("jokeText") as HTMLParagraphElement; //importem text acudit
+const nextJoke = document.getElementById("nextJoke") as HTMLButtonElement;
+const jokeText = document.getElementById("jokeText") as HTMLParagraphElement;
 const boto1 = document.getElementById("boto1") as HTMLButtonElement;
 const boto2 = document.getElementById("boto2") as HTMLButtonElement;
 const boto3 = document.getElementById("boto3") as HTMLButtonElement;
@@ -8,6 +8,7 @@ const temperature2 = document.getElementById("temperature2") as HTMLDivElement;
 const backgroundImage = document.getElementById(
   "backgroundImg"
 ) as HTMLDivElement;
+
 const form = [
   "image1.png",
   "image2.png",
@@ -15,12 +16,6 @@ const form = [
   "image4.png",
   "image5.png",
 ];
-document.addEventListener("DOMContentLoaded", () => {
-  aleatoriJoke();
-  changeBackground();
-});
-
-// variables
 
 const reportJokes: typeJokes[] = [];
 
@@ -30,20 +25,22 @@ type typeJokes = {
   date: string;
 };
 
-// Funció aleatoris
+//Crida funcions al carregar pàgina
+document.addEventListener("DOMContentLoaded", () => {
+  aleatoriJoke();
+  changeBackground();
+});
 
-// MOSTRAR ACUDITS
-
+// Funció per mostrar acudits
 async function getJoke(): Promise<void> {
   try {
     const response = await fetch("https://icanhazdadjoke.com/", {
       headers: {
         Accept: "application/json",
-      }, // amb el get fem un fetch per aconseguir la data i ara l'hem de fer llegible
+      },
     });
 
-    const data = await response.json(); // amb el .json transformem la data llegible i ho recollima a la var. data
-    console.log(data);
+    const data = await response.json();
     if (jokeText) {
       jokeText.innerHTML = data.joke;
     }
@@ -52,9 +49,7 @@ async function getJoke(): Promise<void> {
   }
 }
 
-// Function norris joke
-// nextJoke.addEventListener("click", getNorrisJoke);
-
+// Funció per mostrar acudits Chuck Norris
 async function getNorrisJoke(): Promise<void> {
   try {
     const response = await fetch(
@@ -70,17 +65,15 @@ async function getNorrisJoke(): Promise<void> {
     );
 
     const data = await response.json();
-    console.log(data);
     if (jokeText) {
       jokeText.innerHTML = data.value;
     }
   } catch (error) {
-    console.error("Error getting the norrisJoke", error);
+    console.error("Error getting norrisJoke", error);
   }
 }
 
 //Function getWeather
-
 async function getWeather(): Promise<void> {
   const apiKey = "3dd738c2fa4e8c524c12451eebab3cfb";
   const city = "Barcelona";
@@ -108,8 +101,8 @@ boto1?.addEventListener("click", () => vote(1)); //Cridem la funcio vote amb l'a
 boto2?.addEventListener("click", () => vote(2));
 boto3?.addEventListener("click", () => vote(3));
 
+//Funció valorar acudits
 function vote(score: number) {
-  // let jokeText = document.getElementById("jokeText");
   let jokeScore = score;
 
   if (jokeText) {
@@ -126,6 +119,7 @@ function vote(score: number) {
   }
 }
 
+//Funció canvi de forma aleatoriament
 function changeBackground() {
   const randomIndex = Math.floor(Math.random() * form.length);
   const selectedForm = form[randomIndex];
@@ -133,9 +127,10 @@ function changeBackground() {
 }
 
 function aleatoriJoke() {
-  const funcioAleatoriJoke = Math.random() < 0.5 ? getJoke : getNorrisJoke;
-  funcioAleatoriJoke();
+  const aleatori = Math.random() < 0.5 ? getJoke : getNorrisJoke;
+  aleatori();
 }
+
 nextJoke.addEventListener("click", () => {
   changeBackground();
   aleatoriJoke();

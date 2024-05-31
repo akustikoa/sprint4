@@ -18,7 +18,9 @@ html {
   background-repeat: no-repeat !important;
   background-position: center !important;
 }
-
+#nextJoke {
+  margin-bottom: 50px !important;
+}
 section {
   height: 100vh !important;
   margin: 0 !important;
@@ -30,7 +32,7 @@ section {
   padding: 100%;
 }
 #frase {
-  margin-top: 45px !important;
+  margin-top: 95px !important;
 }
 
 .container {
